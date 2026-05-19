@@ -1,0 +1,50 @@
+int merge(vector<int>& arr,int low,int mid,int high)
+    {
+        int left=low;
+        int right=mid+1;
+        vector<int> temp;
+        int ct=0;
+        while(left<=mid && right <=high)
+        {
+            if(arr[left]<=arr[right])
+            {
+                temp.push_back(arr[left]);
+                left++;
+            }
+            else{
+                temp.push_back(arr[right]);
+                ct+= (mid-left+1);
+                right++;
+            }
+        }
+        while(left<=mid)
+        {
+            temp.push_back(arr[left]);
+            left++;
+        }
+        while(right<=high)
+        {
+            temp.push_back(arr[right]);
+            right++;
+        }
+        for(int i=low;i<=high;i++)
+        {
+            arr[i]=temp[i-low];
+        }
+        return ct;
+    }
+    int mergesort(vector<int>&arr,int low,int high)
+    {
+        int ct=0;
+        int mid=(low+high)/2;
+        if(low>=high) return ct;
+        ct+=mergesort(arr,low,mid);
+        ct+=mergesort(arr,mid+1,high);
+        ct+=merge(arr,low,mid,high);
+        return ct;
+    }
+    int inversioncount(vector<int>&nums)
+    {
+        int n=nums.size();
+        return mergesort(nums,0,n-1);
+     }
