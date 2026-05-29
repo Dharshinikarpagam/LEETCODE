@@ -1,0 +1,35 @@
+Node* merge(Node* list1,Node* list2)
+{
+	Node* dummynode=new Node(-1);
+	Node* res=dummynode;
+	while(list1!=NULL && list2!=NULL)
+	{
+		if(list1->data <list2->data)
+		{
+			res->child=list1;
+			res=list1;
+			list1=list1->child;
+		}
+		else{
+			res->child=list2;
+			res=list2;
+			list2=list2->child;
+		}
+		res->next=nullptr;
+	}
+	if(list1) res->child=list1;
+	else res->child=list2;
+	if(dummynode->child)
+	{
+		dummynode->child->next=nullptr;
+	}
+	return dummynode->child;
+}
+Node* flattenLinkedList(Node* head) 
+{
+	if(head==NULL || head->next==NULL) return head;
+	Node* mergehead=flattenLinkedList(head->next);
+	head=merge(head,mergehead);
+	return head;
+
+}
