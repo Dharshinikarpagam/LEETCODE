@@ -1,0 +1,57 @@
+class Solution {
+public:
+    void insertbetween(Node* head)
+    {
+        Node* temp=head;
+        while(temp!=NULL)
+        {
+            Node* copynode= new Node(temp->val);
+            copynode->next=temp->next;
+            temp->next=copynode;
+
+            temp=temp->next->next;
+        }
+       
+    }
+    void randompointer(Node* head)
+    {
+        Node* temp=head;
+        while(temp!=NULL)
+        {
+            Node* copynode=temp->next;
+            if(temp->random)
+            {
+                copynode->random=temp->random->next;
+            }
+            else
+                copynode->random=NULL;
+            
+            temp=temp->next->next;
+        }
+        
+    }
+    Node* connectnext(Node* head)
+    {
+        Node* dnode=new Node(-1);
+        Node* res=dnode;
+        Node* temp=head;
+        while(temp!=NULL)
+        {
+            //creating a new list
+            res->next=temp->next;
+            res=res->next;
+            // diconnect and go back to the initial link
+            temp->next=temp->next->next;
+            temp=temp->next;
+        }
+        return dnode->next;
+    }
+    Node* copyRandomList(Node* head) {
+        if(head==NULL)
+             return NULL;
+        insertbetween(head);
+        randompointer(head);
+
+        return connectnext(head);
+    }
+};
