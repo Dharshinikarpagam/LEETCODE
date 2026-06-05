@@ -1,0 +1,39 @@
+class Solution {
+  public:
+    struct items
+    {
+        int val;
+        int wt;
+    };
+    static bool comp(items val1,items val2)
+    {
+        if(((double)val1.val/val1.wt) >((double)val2.val/val2.wt))
+            return true;
+        return false;
+    }
+    double fractionalKnapsack(vector<int>& val, vector<int>& wt, int capacity) {
+        int n=val.size();
+        items arr[n];
+        double totalval=0;
+        for(int i=0;i<n;i++)
+        {
+            arr[i].val=val[i];
+            arr[i].wt=wt[i];
+        }
+        sort(arr,arr+n,comp);
+        for(int i=0;i<n;i++)
+        {
+            if(arr[i].wt<=capacity)
+            {
+                totalval+=arr[i].val;
+                capacity=capacity-arr[i].wt;
+            }
+            else{
+                totalval+=((double)arr[i].val/arr[i].wt) * capacity;
+                break;
+            }
+        }
+        return totalval;
+        
+    }
+};
