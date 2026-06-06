@@ -1,0 +1,20 @@
+class Solution {
+  public:
+    void func(int ind,int sum,vector<int>& arr,int n,vector<int>& subsetsum)
+    {
+        if(ind==n)
+        {
+            subsetsum.push_back(sum);
+            return;
+        }
+        func(ind+1,sum+arr[ind],arr,n,subsetsum);
+        func(ind+1,sum,arr,n,subsetsum);
+    }
+    vector<int> subsetSums(vector<int>& arr) {
+        int n=arr.size();
+        vector<int> subsetsum;
+        func(0,0,arr,n,subsetsum);
+        return subsetsum;
+        
+    }
+};
