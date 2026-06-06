@@ -14,6 +14,7 @@ class Solution {
         int n=arr.size();
         vector<int> subsetsum;
         func(0,0,arr,n,subsetsum);
+        sort(subsetsum.begin(),subsetsum.end());
         return subsetsum;
         
     }
