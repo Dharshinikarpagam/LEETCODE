@@ -1,0 +1,38 @@
+class Solution {
+public:
+    void solve(int col,vector<string>& board,vector<vector<string>>& ans,vector<int>& lr,vector<int>& ud,vector<int>& ld,int n)
+    {
+        if(col==n)
+        {
+            ans.push_back(board);
+            return;
+        }
+        for(int row=0;row<n;row++)
+        {
+            if(lr[row]==0 && ud[col+row]==0 && ld[n-1+col-row]==0 )
+            {
+                board[row][col]='Q';
+                lr[row]=1;
+                ud[col+row]=1;
+                ld[n-1+col-row]=1;
+                solve(col+1,board,ans,lr,ud,ld,n);
+                board[row][col]='.';
+                lr[row]=0;
+                ud[col+row]=0;
+                ld[n-1+col-row]=0;
+            }
+        }
+    }
+    vector<vector<string>> solveNQueens(int n) {
+        vector<vector<string>> ans;
+        vector<string> board(n);
+        string s(n,'.');
+        for(int i=0;i<n;i++)
+        {
+            board[i]=s;
+        }
+        vector<int> lr(n,0),ud(2*n-1,0),ld(2*n-1,0);
+        solve(0,board,ans,lr,ud,ld,n);
+        return ans;
+    }
+};
