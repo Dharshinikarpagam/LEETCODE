@@ -1,0 +1,45 @@
+class Solution {
+  public:
+    
+    bool issafe(int node,vector<int>& color,vector<vector<int>>& graph,int n,int col)
+    {
+        for(int k=0;k<n;k++)
+        {
+            if(k!=node && graph[k][node]==1 && color[k]==col)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    bool solve(int node,vector<int>& color,vector<vector<int>>& graph,int m,int n)
+    {
+        if(node==n)
+            return true;
+        for(int col=1;col<=m;col++)
+        {
+            if(issafe(node,color,graph,n,col))
+            {
+                color[node]=col;
+                if(solve(node+1,color,graph,m,n)==true)
+                    return true;
+                color[node]=0;
+            }
+        }
+        return false;
+    }
+    bool graphColoring(int v, vector<vector<int>> &edges, int m) {
+        vector<vector<int>> graph(v,vector<int>(v,0));
+        for(int i=0;i<edges.size();i++)
+        {
+            int u=edges[i][0];
+            int w=edges[i][1];
+            graph[u][w]=1;
+            graph[w][u]=1;
+        }
+        vector<int> color(v,0);
+        if(solve(0,color,graph,m,v)) return true;
+        return false;    
+        
+    }
+};
