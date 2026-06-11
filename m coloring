@@ -1,6 +1,5 @@
 class Solution {
   public:
-    
     bool issafe(int node,vector<int>& color,vector<vector<int>>& graph,int n,int col)
     {
         for(int k=0;k<n;k++)
