@@ -1,0 +1,41 @@
+class Solution {
+  public:
+    double mul(double number,int n)
+    {
+        double ans=1.0;
+        for(int i=1;i<=n;i++)
+        {
+            ans=ans*number;
+        }
+        return ans;
+    }
+    double getroot(int n,int m)
+    {
+        double l=1;
+        double h=m;
+        double ep=1e-6;
+        while((h-l)>ep)
+        {
+            double mid=(l+h)/2.0;
+            if(mul(mid,n)<m)
+            {
+                l=mid;
+            }
+            else
+            {
+                h=mid;
+            }
+        }
+        return l;
+    }
+    int nthRoot(int n, int m) {
+       if(m==0)
+        return 0;
+       double root=getroot(n,m);
+       int ans=round(root);
+       if(mul(ans,n)==m)
+        return ans;
+       return -1;
+        
+    }
+};
