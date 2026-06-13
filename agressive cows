@@ -1,0 +1,38 @@
+class Solution {
+  public:
+    bool canplace(vector<int>& stalls,int dist,int cows,int n)
+    {
+        int cntcow=1;
+        int last=stalls[0];
+        for(int i=1;i<n;i++)
+        {
+            if((stalls[i]-last)>=dist)
+            {
+                cntcow++;
+                last=stalls[i];
+            }
+            if(cntcow>=cows)
+                return true;
+        }
+        return false;
+    }
+    int aggressiveCows(vector<int> &stalls, int k) {
+        int n=stalls.size();
+        sort(stalls.begin(),stalls.end());
+        int l=0;
+        int h=stalls[n-1]-stalls[0];
+        while(l<=h)
+        {
+            int mid=(l+h)/2;
+            if(canplace(stalls,mid,k,n)==true)
+            {
+                l=mid+1;
+            }
+            else{
+                h=mid-1;
+            }
+        }
+        return h;
+        
+    }
+};
