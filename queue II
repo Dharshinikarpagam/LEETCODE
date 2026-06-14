@@ -1,0 +1,60 @@
+class Node {
+  public:
+    int data;
+    Node* next;
+
+    Node(int new_data) {
+        data = new_data;
+        next = nullptr;
+    }
+};
+
+class myQueue {
+
+  public:
+    Node* start;
+    Node* end;
+    int size1;
+    
+    myQueue() {
+       start=end=NULL;
+       size1=0;
+    }
+
+    bool isEmpty() {
+        if(start==NULL)
+            return true;
+        return false;
+    }
+
+    void enqueue(int x) {
+        Node* temp=new Node(x);
+        if(start==NULL)
+        {
+            start=end=temp;
+        }
+        else
+            end->next=temp;
+            end=temp;
+        size1+=1;
+    }
+
+    void dequeue() {
+        if(isEmpty())
+            return ;
+        Node* temp=start;
+        start=start->next;
+        delete temp;
+        size1-=1;
+    }
+
+    int getFront() {
+        if(isEmpty())
+            return -1;
+        return start->data;
+    }
+
+    int size() {
+        return size1;
+    }
+};
