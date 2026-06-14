@@ -1,0 +1,48 @@
+class myStack {
+  public:
+    int top;
+    int *st;
+    int size;
+    
+    myStack(int n) {
+       top=-1;
+       size=n;
+       st=new int[n];
+       
+    }
+
+    bool isEmpty() {
+        if(top==-1)
+            return true;
+        return false;
+    }
+
+    bool isFull() {
+      if(top==size-1)
+        return true;
+    return false;
+    }
+
+    void push(int x) {
+        if(isFull())
+            return;
+        top=top+1;
+        st[top]=x;
+    }
+
+    void pop() {
+       if(isEmpty())
+         return;
+       top--;
+    }
+
+    int peek() {
+        if(isEmpty())
+            return -1;
+        return st[top];
+    }
+    int getsize()
+    {
+        return top+1;
+    }
+};
