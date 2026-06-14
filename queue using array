@@ -1,0 +1,66 @@
+class myQueue {
+
+  public:
+    int start;
+    int end;
+    int *q;
+    int size;
+    int cursize;
+    myQueue(int n) {
+        size=n;
+        start=-1;
+        end=-1;
+        q=new int[n];
+        cursize=0;
+    }
+
+    bool isEmpty() {
+        if(cursize==0)
+            return true;
+        return false;
+    }
+
+    bool isFull() {
+        if(cursize==size)
+            return true;
+        return false;
+    }
+
+    void enqueue(int x) {
+        if(isFull())
+            return;
+        if(cursize==0)
+        {
+            start=0;
+            end=0;
+        }
+        else{
+            end=(end+1)%size;
+        }
+        q[end]=x;
+        cursize+=1;
+    }
+
+    void dequeue() {
+        if(isEmpty())
+            return;
+        if(cursize==1)
+            start=end=-1;
+        else
+            start+=1;
+        cursize-=1;
+        
+    }
+
+    int getFront() {
+        if(cursize==0)
+            return -1;
+        return q[start];
+    }
+
+    int getRear() {
+       if(cursize==0)
+            return -1;
+        return q[end];
+    }
+};
