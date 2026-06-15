@@ -1,0 +1,26 @@
+class Solution {
+  public:
+    void insert(stack<int>& st,int temp)
+    {
+        if(st.empty() || st.top() <=temp)
+        {
+            st.push(temp);
+            return;
+        }
+        int val=st.top();
+        st.pop();
+        insert(st,temp);
+        st.push(val);
+    }
+    void sortStack(stack<int> &st) {
+        if(st.empty())
+        {
+            return ;
+        }
+        int top1=st.top();
+        st.pop();
+        sortStack(st);
+        insert(st,top1);
+        
+    }
+};
