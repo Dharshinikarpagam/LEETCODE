@@ -1,0 +1,54 @@
+class Solution {
+public:
+    int rabinKarp(string &text, string &pattern) {
+        // code here
+        int n=text.size();
+        int m=pattern.size();
+        if(m>n)
+            return 0;
+        long long base=256;
+        long long mod=1e9+7;
+        long long ph=0;
+        long long th=0;
+        long long power=1;
+        for(int i=0;i<m;i++)
+        {
+            ph=(ph*base+pattern[i])%mod;
+            th=(th*base+text[i])% mod;
+            if(i<m-1)
+            {
+                power=(power*base)%mod;
+            }
+        }
+        if(ph==th)
+            return 0;
+        for(int i=m;i<n;i++)
+        {
+            th=(th-text[i-m]*power%mod+mod)% mod;
+            th=(th*base+text[i])% mod;
+            if(th==ph){
+                return i-m+1;
+            }
+        }
+        return -1;
+    }
+    int repeatedStringMatch(string a, string b) {
+        string temp=a;
+        int cnt=1;
+        while(temp.size()<b.size())
+        {
+            temp+=a;
+            cnt++;
+        }
+        if(rabinKarp(temp,b)!=-1)
+        {
+            return cnt;
+        }
+        temp+=a;
+        if(rabinKarp(temp,b)!=-1)
+        {
+            return cnt+1;
+        }
+        return -1;
+    }
+};
