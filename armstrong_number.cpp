@@ -14,7 +14,7 @@ class Solution {
         while(n>0)
         {
             int ld=n%10;
-            sum=sum+(ld*ld*ld);
+            sum=sum+(ld*ld*ld); // or we can do pow(ld,cnt)
             rev=(rev*10)+ld;
             n=n/10;
         }
