@@ -14,3 +14,22 @@ class Solution {
         
     }
 };
+
+BACKTRACKING:
+
+class Solution {
+  public:
+    void func(int i,int n)
+    {
+        if(i<1)
+        {
+            return;
+        }
+        func(i-1,n);
+        cout<<i<<" ";
+    }
+    void printTillN(int n) {
+       func(n,n);
+        
+    }
+};
