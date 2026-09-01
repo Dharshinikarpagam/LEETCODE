@@ -18,7 +18,7 @@ public:
         while(sp<s.size() && tp<t.size())
         {
             if(s[sp]==t[tp]) {
-                sp++,tp++;
+                sp++;
             }
             else{
                 tp++;
