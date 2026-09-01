@@ -1,4 +1,5 @@
 //since the arr is sorted use of two pointer approach
+
 class Solution {
 public:
     vector<int> twoSum(vector<int>& numbers, int target) {
