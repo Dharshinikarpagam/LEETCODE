@@ -1,3 +1,4 @@
+//since array is sorted use binary search to find the start and end position
 class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
