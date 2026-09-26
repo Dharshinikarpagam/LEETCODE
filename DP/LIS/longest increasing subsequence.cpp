@@ -7,12 +7,13 @@ public:
         {
             return 0;
         }
-        int len=0+func(ind+1,pre,nums,n);
+        int ntake=0+func(ind+1,pre,nums,n);
+        int take=0;
         if(pre==-1 || nums[ind]>nums[pre])
         {
-            len=max(len,1+func(ind+1,ind,nums,n));
+            take=max(take,1+func(ind+1,ind,nums,n));
         }
-        return len;
+        return max(ntake,take);
     }
     int lengthOfLIS(vector<int>& nums) {
         int n=nums.size();
@@ -27,12 +28,13 @@ int func(int ind,int pre,vector<int> &nums,int n,vector<vector<int>> &dp)
             return 0;
         }
         if(dp[ind][pre+1]!=0) return dp[ind][pre+1];
-        int len=0+func(ind+1,pre,nums,n,dp);
+        int ntake=0+func(ind+1,pre,nums,n);
+        int take=0;
         if(pre==-1 || nums[ind]>nums[pre])
         {
-            len=max(len,1+func(ind+1,ind,nums,n,dp));
+            take=max(take,1+func(ind+1,ind,nums,n));
         }
-        return dp[ind][pre+1]=len;
+        return dp[ind][pre]=max(ntake,take);
     }
     int lengthOfLIS(vector<int>& nums) {
         int n=nums.size();
