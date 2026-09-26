@@ -11,7 +11,7 @@ public:
         int take=0;
         if(pre==-1 || nums[ind]>nums[pre])
         {
-            take=max(take,1+func(ind+1,ind,nums,n));
+            take=1+func(ind+1,ind,nums,n);
         }
         return max(ntake,take);
     }
@@ -32,7 +32,7 @@ int func(int ind,int pre,vector<int> &nums,int n,vector<vector<int>> &dp)
         int take=0;
         if(pre==-1 || nums[ind]>nums[pre])
         {
-            take=max(take,1+func(ind+1,ind,nums,n));
+            take=1+func(ind+1,ind,nums,n);
         }
         return dp[ind][pre]=max(ntake,take);
     }
